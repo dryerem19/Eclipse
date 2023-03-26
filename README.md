@@ -1,10 +1,10 @@
 # Eclipse
 Eclipse is a small library for creating windowed applications using ImGui and GLFW
 
-![image](https://user-images.githubusercontent.com/73961037/227783523-6862d6e3-75c2-4fd7-a351-c8c98c577689.png)
-
 ### Eclipse 
 This example creates an ImGui window that is displayed on top of the desktop and we can work with it as well as with any other window of your OC
+
+![image](https://user-images.githubusercontent.com/73961037/227783523-6862d6e3-75c2-4fd7-a351-c8c98c577689.png)
 
 ### API doc
 
