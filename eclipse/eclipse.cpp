@@ -142,6 +142,16 @@ void Eclipse::restoreIconify()
     glfwRestoreWindow(pWindow);
 }
 
+void Eclipse::setMaximized()
+{
+    GLFWwindow* pWindow = GetGLFWindow();
+    if (!pWindow) {
+        return;
+    }
+
+    glfwMaximizeWindow(pWindow);
+}
+
 bool Eclipse::isIconified()
 {
     GLFWwindow* pWindow = GetGLFWindow();
@@ -149,6 +159,11 @@ bool Eclipse::isIconified()
     return iconified;
 }
 
+bool Eclipse::isMaximized()
+{
+    GLFWwindow* pWindow = GetGLFWindow();
+    return glfwGetWindowAttrib(pWindow, GLFW_MAXIMIZED);
+}
 
 void Eclipse::Destroy()
 {
