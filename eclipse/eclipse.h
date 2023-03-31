@@ -36,6 +36,11 @@ namespace Eclipse {
 	 */
 	void setIconify();
 
+	/**
+	 * @brief Windows can be maximized
+	 */
+	void setMaximized();
+
 	/*
 	* @brief Iconified windows can be restored 
 	*/
@@ -45,6 +50,11 @@ namespace Eclipse {
 	* @brief You can also get the current iconification state
 	*/
 	bool isIconified();
+
+	/*
+	* @brief You can also get the current maximized state
+	*/
+	bool isMaximized();
 
 	/**
 	 * @brief Уничтожить все ресурсы Eclipse (GLFW, ImGui)
