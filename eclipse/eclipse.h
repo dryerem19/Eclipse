@@ -3,32 +3,52 @@
 #include <GLFW/glfw3.h>
 
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
-#include <imgui.h>
-#include <imgui_impl_opengl3.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_internal.h>
+#include <external/imgui/imgui.h>
+#include <external/imgui/imgui_impl_opengl3.h>
+#include <external/imgui/imgui_impl_glfw.h>
+#include <external/imgui/imgui_internal.h>
 
-/**
- * @brief Инициализация Eclipse
- * 
- * @return int 
- */
-int eclipseInit();
+namespace Eclipse {
 
-/**
- * @brief Начать новый кадр ImGui
- * 
- */
-void eclipseBegin();
+	/**
+	 * @brief Инициализация Eclipse
+	 *
+	 * @return int
+	 */
+	int Init();
 
-/**
- * @brief Закончить кадр ImGui
- * 
- */
-void eclipseEnd();
+	/**
+	 * @brief Начать новый кадр ImGui
+	 *
+	 */
+	void Begin();
 
-/**
- * @brief Уничтожить все ресурсы Eclipse (GLFW, ImGui)
- * 
- */
-void eclipseDestroy();
+	/**
+	 * @brief Закончить кадр ImGui
+	 *
+	 */
+	void End();
+
+	GLFWwindow* GetGLFWindow();
+
+	/**
+	 * @brief Windows can be iconified (i.e. minimized)
+	 */
+	void setIconify();
+
+	/*
+	* @brief Iconified windows can be restored 
+	*/
+	void restoreIconify();
+
+	/*
+	* @brief You can also get the current iconification state
+	*/
+	bool isIconified();
+
+	/**
+	 * @brief Уничтожить все ресурсы Eclipse (GLFW, ImGui)
+	 *
+	 */
+	void Destroy();
+}

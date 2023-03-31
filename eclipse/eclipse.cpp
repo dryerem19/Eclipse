@@ -2,7 +2,7 @@
 
 GLFWwindow* g_pWindow = nullptr;
 
-int eclipseInit()
+int Eclipse::Init()
 {
     // Инициализация GLFW
     if (!glfwInit()) {
@@ -70,7 +70,7 @@ int eclipseInit()
     return 1;
 }
 
-void eclipseBegin()
+void Eclipse::Begin()
 {
     // Очищаем буфер кадра
     glClear(GL_COLOR_BUFFER_BIT);
@@ -84,7 +84,7 @@ void eclipseBegin()
     ImGui::NewFrame();
 }
 
-void eclipseEnd()
+void Eclipse::End()
 {
     ImGuiIO& io = ImGui::GetIO();
     ImGui::Render();
@@ -102,8 +102,55 @@ void eclipseEnd()
     glfwSwapBuffers(g_pWindow);
 }
 
+GLFWwindow* Eclipse::GetGLFWindow()
+{
+    ImGuiWindow* pWindow = ImGui::GetCurrentWindow();
+    if (!pWindow) {
+        return nullptr;
+    }
 
-void eclipseDestroy()
+    ImGuiViewportP* pVp = pWindow->Viewport;
+    if (!pVp) {
+        return nullptr;
+    }
+
+    auto platformData = (ImGui_ImplGlfw_ViewportData*)pVp->PlatformUserData;
+    if (!platformData) {
+        return nullptr;
+    }
+
+    return platformData->Window;
+}
+
+void Eclipse::setIconify()
+{
+    GLFWwindow* pWindow = GetGLFWindow();
+    if (!pWindow) {
+        return;
+    }
+
+    glfwIconifyWindow(pWindow);
+}
+
+void Eclipse::restoreIconify()
+{
+    GLFWwindow* pWindow = GetGLFWindow();
+    if (!pWindow) {
+        return;
+    }
+
+    glfwRestoreWindow(pWindow);
+}
+
+bool Eclipse::isIconified()
+{
+    GLFWwindow* pWindow = GetGLFWindow();
+    int iconified = glfwGetWindowAttrib(pWindow, GLFW_ICONIFIED);
+    return iconified;
+}
+
+
+void Eclipse::Destroy()
 {
     // Освобождение ресурсов ImGui и GLFW
     ImGui_ImplOpenGL3_Shutdown();

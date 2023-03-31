@@ -1,20 +1,37 @@
 #include <eclipse.h>
+#include <iostream>
 
 int main()
 {
-    if (!eclipseInit()) {
+    if (!Eclipse::Init()) {
         return -1;
     }
 
-    bool running = true;
-    while (running)
+    bool first = true;
+    bool second = true;
+
+    while (first || second)
     {
-        eclipseBegin();
+        Eclipse::Begin();
         {
-            ImGui::ShowDemoWindow(&running);
+            if (first)
+            {
+                ImGui::Begin("Iconify window", &first);
+                {
+                    if (ImGui::Button("Iconify")) {
+                        Eclipse::setIconify();
+                    }
+                }
+                ImGui::End();
+            }
+
+            if (second)
+            {
+                ImGui::ShowDemoWindow(&second);
+            }
         }
-        eclipseEnd();
+        Eclipse::End();
     }
 
-    eclipseDestroy();
+    Eclipse::Destroy();
 }
